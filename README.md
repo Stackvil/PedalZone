@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ClassicRide - Premium Classic Bicycles
 
 A beautiful, production-ready classic bicycle e-commerce website built with React and Tailwind CSS. Features a vintage, premium aesthetic with elegant typography and a fully responsive design.
@@ -186,3 +187,6 @@ For questions or support, visit the contact page or email hello@classicride.com
 
 **Built with ❤️ for classic bicycle enthusiasts**
 
+=======
+# PedalZone
+>>>>>>> 09266d108dcb142f9c42557a3bbe7a8e7f5e806b
