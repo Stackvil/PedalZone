@@ -11,14 +11,20 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[700px] bg-gradient-to-br from-stone-900 to-stone-700">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1200&q=80')"
-          }}
-        />
-        <div className="relative container mx-auto px-4 h-full flex items-center justify-center text-center">
+      <section className="relative h-screen bg-gradient-to-br from-stone-900 to-stone-700 overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/Home Intro-transcode.mp4" type="video/mp4" />
+        </video>
+        {/* Dark Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40 z-[1]"></div>
+        <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center text-center">
           <div className="max-w-4xl animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 tracking-wide">
               Pedal Zone Bicycles
@@ -26,11 +32,11 @@ const Home = () => {
             <p className="text-xl md:text-2xl text-stone-200 mb-8 font-light">
               Crafted for the Road. Inspired by Tradition.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button to="/bicycles" variant="primary" className="text-lg px-8 py-3">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-20 mt-8">
+              <Button to="/bicycles" variant="primary" className="text-lg px-8 py-3 !bg-amber-700 !text-white hover:!bg-amber-800 !shadow-xl !opacity-100">
                 Shop Bicycles
               </Button>
-              <Button to="/gallery" variant="secondary" className="text-lg px-8 py-3 bg-white border-white text-stone-900 hover:bg-stone-100">
+              <Button to="/gallery" variant="secondary" className="text-lg px-8 py-3 !bg-white !border-white !text-stone-900 hover:!bg-stone-100 !shadow-xl !opacity-100">
                 View Gallery
               </Button>
             </div>
@@ -63,15 +69,15 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <SectionTitle
             title="Meet the Owner"
-            subtitle="Edward Morrison - Founder of Pedal Zone Bicycles"
+            subtitle="Sandeep Cycle Traders | Pedal Zone Cycle Shop & EMOTORAD Electric E-Cycles Store"
           />
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
               <div className="animate-fade-in">
                 <div className="rounded-2xl overflow-hidden shadow-2xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" 
-                    alt="Edward Morrison"
+                    src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80" 
+                    alt="Owner - Sandeep Cycle Traders"
                     className="w-full h-[500px] object-cover"
                   />
                 </div>
@@ -79,50 +85,115 @@ const Home = () => {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-4xl font-serif font-bold text-stone-900 mb-6">
-                    Edward Morrison
+                    Owner of Pedal Zone Cycle Shop
                   </h3>
-                  <div className="h-1 w-24 bg-amber-700 rounded"></div>
+                  <div className="h-1 w-24 bg-amber-700 rounded mb-4"></div>
+                  <p className="text-lg text-slate-600">
+                    Sandeep Cycle Traders | EMOTORAD Electric E-Cycles Store
+                  </p>
                 </div>
                 
                 <div className="prose prose-lg text-slate-700 space-y-4">
                   <p className="text-lg leading-relaxed">
-                    Born in 1925 in Birmingham, England, Edward Morrison discovered his passion for 
-                    bicycles at the age of twelve when he received his first bike—a worn-out roadster 
-                    that he painstakingly restored to its former glory. This early experience ignited 
-                    a lifelong dedication to the art of bicycle craftsmanship.
+                    The owner of Pedal Zone Cycle Shop (Sandeep Cycle Traders) and EMOTORAD Electric 
+                    E-Cycles Store is a highly accomplished cyclist with a proven track record of excellence 
+                    in long-distance rides and competitive racing. With a deep passion for cycling and a 
+                    commitment to promoting a healthy lifestyle, he has earned recognition across multiple 
+                    cycling events.
                   </p>
                   <p className="text-lg leading-relaxed">
-                  After serving as an aircraft mechanic during World War II, Edward brought his 
-                  precision engineering skills to the world of bicycle making. In 1947, at just 22 
-                  years old, he founded Pedal Zone Bicycles in a small London workshop with nothing 
-                  but his tools, his vision, and an unwavering commitment to excellence.
-                  </p>
-                  <p className="text-lg leading-relaxed">
-                    Over seven decades, Edward has handcrafted over 5,000 bicycles, each one a 
-                    testament to his meticulous attention to detail and deep understanding of frame 
-                    geometry, materials, and riding dynamics. His philosophy is simple yet profound: 
-                    "A bicycle should be a lifelong companion, built to last generations and bring 
-                    joy to every journey."
+                    His dedication to cycling extends beyond personal achievements, inspiring many new riders 
+                    in the community and actively contributing to the growth of cycling culture through both 
+                    traditional and modern electric cycling solutions.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Awards and Recognition */}
+            {/* Major Achievements */}
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-12 animate-fade-in">
-              <h3 className="text-3xl font-serif font-bold text-stone-900 mb-8 text-center">
-                Awards & Recognition
+              <h3 className="text-3xl font-serif font-bold text-stone-900 mb-8 text-center flex items-center justify-center gap-3">
+                <span className="text-4xl">🏆</span>
+                Major Achievements
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
-                  <div className="text-4xl">🏆</div>
+                  <div className="text-4xl">🚴</div>
                   <div>
                     <h4 className="text-xl font-semibold text-stone-900 mb-2">
-                      British Cycling Heritage Award
+                      200 km Endurance Ride
                     </h4>
                     <p className="text-slate-600">
-                      Lifetime Achievement Award for outstanding contribution to British cycling 
-                      heritage and craftsmanship (2015)
+                      Completed 200 km endurance ride, demonstrating exceptional stamina, discipline, 
+                      and determination.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
+                  <div className="text-4xl">🥇</div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-stone-900 mb-2">
+                      1st Place Winner
+                    </h4>
+                    <p className="text-slate-600">
+                      Secured 1st Place in several local and regional cycle races, showcasing competitive 
+                      spirit and top-level performance.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
+                  <div className="text-4xl">💪</div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-stone-900 mb-2">
+                      Multiple Endurance Challenges
+                    </h4>
+                    <p className="text-slate-600">
+                      Successfully completed multiple long-distance and endurance cycling challenges, 
+                      inspiring many new riders in the community.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
+                  <div className="text-4xl">🏔️</div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-stone-900 mb-2">
+                      Versatile Competitor
+                    </h4>
+                    <p className="text-slate-600">
+                      Recognized for consistent performance in both road cycling and off-road biking 
+                      competitions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Awards and Honors */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-12 animate-fade-in">
+              <h3 className="text-3xl font-serif font-bold text-stone-900 mb-8 text-center flex items-center justify-center gap-3">
+                <span className="text-4xl">🎖️</span>
+                Awards & Honors
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
+                  <div className="text-4xl">🏁</div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-stone-900 mb-2">
+                      Road Racing & Time Trial Excellence
+                    </h4>
+                    <p className="text-slate-600">
+                      Awarded for outstanding results in Road Racing and Time Trial events.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
+                  <div className="text-4xl">🏃</div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-stone-900 mb-2">
+                      Cycling Marathon Recognition
+                    </h4>
+                    <p className="text-slate-600">
+                      Honored in Cycling Marathons for exceptional speed, endurance, and consistency.
                     </p>
                   </div>
                 </div>
@@ -130,79 +201,90 @@ const Home = () => {
                   <div className="text-4xl">⭐</div>
                   <div>
                     <h4 className="text-xl font-semibold text-stone-900 mb-2">
-                      Master Craftsman Recognition
+                      Community Sports Excellence
                     </h4>
                     <p className="text-slate-600">
-                      Awarded Master Craftsman status by the Guild of British Framebuilders 
-                      for 50 years of exceptional service (2012)
+                      Received Community Sports Excellence Awards for promoting cycling culture and 
+                      encouraging young riders.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
-                  <div className="text-4xl">🎖️</div>
+                  <div className="text-4xl">🤝</div>
                   <div>
                     <h4 className="text-xl font-semibold text-stone-900 mb-2">
-                      Order of the British Empire (OBE)
+                      Cycling Associations Recognition
                     </h4>
                     <p className="text-slate-600">
-                      Honored by Her Majesty Queen Elizabeth II for services to British 
-                      manufacturing and cycling culture (2018)
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-6 bg-amber-50 rounded-xl">
-                  <div className="text-4xl">📚</div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-stone-900 mb-2">
-                      Author & Educator
-                    </h4>
-                    <p className="text-slate-600">
-                      Published "The Art of Frame Building" (2008), now considered the definitive 
-                      guide to traditional bicycle construction
+                      Appreciated by various Cycling Clubs and Associations for active participation 
+                      and contribution.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Dedication and Philosophy */}
-            <div className="bg-gradient-to-r from-stone-900 to-stone-700 rounded-2xl shadow-xl p-8 md:p-12 text-white mb-12 animate-fade-in">
-              <div className="max-w-4xl mx-auto text-center">
-                <div className="text-6xl mb-6">💝</div>
-                <h3 className="text-3xl font-serif font-bold mb-6">
-                  Dedication to the Craft
-                </h3>
-                <blockquote className="text-xl md:text-2xl font-light italic leading-relaxed mb-6">
-                  "Every frame I build carries a piece of my soul. I don't just create bicycles; 
-                  I create companions for life's adventures. When someone rides one of my bikes, 
-                  they're not just experiencing superior engineering—they're feeling decades of 
-                  passion, countless hours of refinement, and an unbreakable commitment to excellence."
-                </blockquote>
-                <p className="text-lg text-stone-300">
-                  — Edward Morrison, Master Frame Builder
+            {/* Stores Information */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+              {/* Pedal Zone Cycle Shop */}
+              <div className="bg-white rounded-2xl shadow-xl p-8 animate-fade-in">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="text-5xl">🚴</div>
+                  <div>
+                    <h3 className="text-2xl font-serif font-bold text-stone-900">
+                      Pedal Zone Cycle Shop
+                    </h3>
+                    <p className="text-amber-700 font-medium">Sandeep Cycle Traders</p>
+                  </div>
+                </div>
+                <p className="text-slate-600 mb-6">
+                  A trusted name in premium bicycles, accessories, and maintenance services. 
+                  The shop is known for:
                 </p>
+                <ul className="space-y-3 text-slate-700">
+                  <li className="flex items-start gap-3">
+                    <span className="text-amber-700 mt-1">✓</span>
+                    <span>High-quality cycles for beginners to professionals</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-amber-700 mt-1">✓</span>
+                    <span>Expert servicing & repairs</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-amber-700 mt-1">✓</span>
+                    <span>Personalized guidance for riders of all levels</span>
+                  </li>
+                </ul>
               </div>
-            </div>
 
-            {/* Legacy and Contributions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="text-center p-8 bg-white rounded-xl shadow-lg animate-fade-in">
-                <div className="text-5xl mb-4">🔧</div>
-                <div className="text-4xl font-bold text-amber-700 mb-2">5,000+</div>
-                <p className="text-lg text-stone-900 font-semibold mb-2">Bicycles Crafted</p>
-                <p className="text-slate-600">Each one hand-built with meticulous attention to detail</p>
-              </div>
-              <div className="text-center p-8 bg-white rounded-xl shadow-lg animate-fade-in">
-                <div className="text-5xl mb-4">👨‍🏫</div>
-                <div className="text-4xl font-bold text-amber-700 mb-2">50+</div>
-                <p className="text-lg text-stone-900 font-semibold mb-2">Apprentices Trained</p>
-                <p className="text-slate-600">Passing on traditional skills to the next generation</p>
-              </div>
-              <div className="text-center p-8 bg-white rounded-xl shadow-lg animate-fade-in">
-                <div className="text-5xl mb-4">🌍</div>
-                <div className="text-4xl font-bold text-amber-700 mb-2">75+</div>
-                <p className="text-lg text-stone-900 font-semibold mb-2">Years of Excellence</p>
-                <p className="text-slate-600">Nearly eight decades of unwavering quality</p>
+              {/* EMOTORAD Electric E-Cycles Store */}
+              <div className="bg-gradient-to-br from-stone-900 to-stone-700 rounded-2xl shadow-xl p-8 text-white animate-fade-in">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="text-5xl">⚡</div>
+                  <div>
+                    <h3 className="text-2xl font-serif font-bold text-white">
+                      EMOTORAD Electric E-Cycles Store
+                    </h3>
+                    <p className="text-amber-400 font-medium">Modern & Eco-Friendly</p>
+                  </div>
+                </div>
+                <p className="text-stone-200 mb-6">
+                  Your destination for modern, eco-friendly electric cycles offering:
+                </p>
+                <ul className="space-y-3 text-stone-100">
+                  <li className="flex items-start gap-3">
+                    <span className="text-amber-400 mt-1">✓</span>
+                    <span>Advanced e-bikes with powerful performance</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-amber-400 mt-1">✓</span>
+                    <span>Test rides, maintenance, and expert support</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-amber-400 mt-1">✓</span>
+                    <span>Perfect options for commuting, fitness, and long rides</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

@@ -1,10 +1,27 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { getCartCount } = useCart();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if scrolled past hero section (100vh)
+      const heroHeight = window.innerHeight;
+      setIsScrolled(window.scrollY > heroHeight - 100 || window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Check initial scroll position
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { to: '/', label: 'Home' },
@@ -14,13 +31,23 @@ const Header = () => {
     { to: '/contact', label: 'Contact' },
   ];
 
+  const isTransparent = isHomePage && !isScrolled;
+
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
+    <header 
+      className={`z-50 transition-all duration-300 ${
+        isTransparent 
+          ? 'absolute top-0 left-0 right-0 bg-transparent' 
+          : 'sticky top-0 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm'
+      }`}
+    >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-3xl font-serif font-bold text-stone-900 tracking-wide">
+            <span className={`text-3xl font-serif font-bold tracking-wide transition-colors duration-300 ${
+              isTransparent ? 'text-white' : 'text-stone-900'
+            }`}>
               Pedal Zone
             </span>
           </Link>
@@ -32,10 +59,14 @@ const Header = () => {
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `text-base font-medium transition duration-200 ${
+                  `text-base font-medium transition-all duration-200 ${
                     isActive
-                      ? 'text-amber-700 border-b-2 border-amber-700'
-                      : 'text-stone-700 hover:text-amber-700'
+                      ? isTransparent
+                        ? 'text-white border-b-2 border-white'
+                        : 'text-amber-700 border-b-2 border-amber-700'
+                      : isTransparent
+                        ? 'text-white/90 hover:text-white'
+                        : 'text-stone-700 hover:text-amber-700'
                   }`
                 }
               >
@@ -44,7 +75,11 @@ const Header = () => {
             ))}
             <Link
               to="/cart"
-              className="relative text-stone-700 hover:text-amber-700 transition duration-200"
+              className={`relative transition-all duration-200 ${
+                isTransparent 
+                  ? 'text-white/90 hover:text-white' 
+                  : 'text-stone-700 hover:text-amber-700'
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +105,9 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-stone-900"
+            className={`md:hidden transition-colors duration-300 ${
+              isTransparent ? 'text-white' : 'text-stone-900'
+            }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg
@@ -101,7 +138,9 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in">
+          <div className={`md:hidden mt-4 pb-4 space-y-4 animate-fade-in ${
+            isTransparent ? 'bg-stone-900/95 backdrop-blur rounded-lg p-4' : ''
+          }`}>
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}
@@ -109,7 +148,9 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className={({ isActive }) =>
                   `block py-2 text-base font-medium transition duration-200 ${
-                    isActive ? 'text-amber-700' : 'text-stone-700'
+                    isActive 
+                      ? isTransparent ? 'text-amber-400' : 'text-amber-700'
+                      : isTransparent ? 'text-white' : 'text-stone-700'
                   }`
                 }
               >
@@ -119,7 +160,9 @@ const Header = () => {
             <Link
               to="/cart"
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center space-x-2 py-2 text-base font-medium text-stone-700"
+              className={`flex items-center space-x-2 py-2 text-base font-medium ${
+                isTransparent ? 'text-white' : 'text-stone-700'
+              }`}
             >
               <span>Cart</span>
               {getCartCount() > 0 && (
