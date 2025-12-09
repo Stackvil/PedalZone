@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard';
 import CategoryCard from '../components/CategoryCard';
 import SectionTitle from '../components/SectionTitle';
 import { bicycles, categories } from '../data/bicycles';
+import ownerImage from '../images/2022-10-09.webp';
 
 const Home = () => {
   const featuredBicycles = bicycles.filter((bike) => bike.isFeatured).slice(0, 6);
@@ -76,7 +77,7 @@ const Home = () => {
               <div className="animate-fade-in">
                 <div className="rounded-2xl overflow-hidden shadow-2xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80" 
+                    src={ownerImage} 
                     alt="Owner - Sandeep Cycle Traders"
                     className="w-full h-[500px] object-cover"
                   />

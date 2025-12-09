@@ -1,7 +1,81 @@
 import { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 
+// Import local gallery images
+import img1 from '../images/gallery/2023-12-31.webp';
+import img2 from '../images/gallery/2024-01-11.webp';
+import img3 from '../images/gallery/2024-07-26 (1).webp';
+import img4 from '../images/gallery/2024-12-29.webp';
+import img5 from '../images/gallery/2025-04-14.webp';
+import img6 from '../images/gallery/2025-05-15.webp';
+import img7 from '../images/gallery/unnamed (2).webp';
+import img8 from '../images/gallery/unnamed (3).webp';
+import img9 from '../images/gallery/unnamed (4).webp';
+import img10 from '../images/gallery/unnamed.webp';
+
 const galleryImages = [
+  // Local gallery images (from folder) - displayed first
+  {
+    id: 101,
+    url: img1,
+    title: 'Gallery Image 1',
+    category: 'gallery'
+  },
+  {
+    id: 102,
+    url: img2,
+    title: 'Gallery Image 2',
+    category: 'gallery'
+  },
+  {
+    id: 103,
+    url: img3,
+    title: 'Gallery Image 3',
+    category: 'gallery'
+  },
+  {
+    id: 104,
+    url: img4,
+    title: 'Gallery Image 4',
+    category: 'gallery'
+  },
+  {
+    id: 105,
+    url: img5,
+    title: 'Gallery Image 5',
+    category: 'gallery'
+  },
+  {
+    id: 106,
+    url: img6,
+    title: 'Gallery Image 6',
+    category: 'gallery'
+  },
+  {
+    id: 107,
+    url: img7,
+    title: 'Gallery Image 7',
+    category: 'gallery'
+  },
+  {
+    id: 108,
+    url: img8,
+    title: 'Gallery Image 8',
+    category: 'gallery'
+  },
+  {
+    id: 109,
+    url: img9,
+    title: 'Gallery Image 9',
+    category: 'gallery'
+  },
+  {
+    id: 110,
+    url: img10,
+    title: 'Gallery Image 10',
+    category: 'gallery'
+  },
+  // Original gallery images - displayed after local images
   {
     id: 1,
     url: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80',
@@ -61,18 +135,6 @@ const galleryImages = [
     url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
     title: 'Detail Shot',
     category: 'details'
-  },
-  {
-    id: 11,
-    url: 'https://images.unsplash.com/photo-1591633823334-63d75eb08708?w=800&q=80',
-    title: 'Leather Saddle',
-    category: 'details'
-  },
-  {
-    id: 12,
-    url: 'https://images.unsplash.com/photo-1589789823040-4e4fbab88793?w=800&q=80',
-    title: 'Vintage Basket',
-    category: 'details'
   }
 ];
 
@@ -115,16 +177,20 @@ const Gallery = () => {
         {/* Lightbox Modal */}
         {selectedImage && (
           <div
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fade-in"
-            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fade-in overflow-y-auto"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                setSelectedImage(null);
+              }
+            }}
           >
             <button
-              className="absolute top-4 right-4 text-white hover:text-amber-500 transition"
+              className="absolute top-4 right-4 z-10 text-white hover:text-amber-500 transition bg-black/50 rounded-full p-2"
               onClick={() => setSelectedImage(null)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
+                className="h-6 w-6 sm:h-8 sm:w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -137,17 +203,22 @@ const Gallery = () => {
                 />
               </svg>
             </button>
-            <div className="max-w-6xl w-full">
-              <img
-                src={selectedImage.url}
-                alt={selectedImage.title}
-                className="w-full h-auto rounded-lg"
-              />
+            <div 
+              className="w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl my-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative">
+                <img
+                  src={selectedImage.url}
+                  alt={selectedImage.title}
+                  className="w-full h-auto max-h-[70vh] sm:max-h-[75vh] md:max-h-[80vh] lg:max-h-[85vh] object-contain rounded-lg"
+                />
+              </div>
               <div className="text-center mt-4">
-                <h3 className="text-white text-2xl font-semibold">
+                <h3 className="text-white text-lg sm:text-xl md:text-2xl font-semibold">
                   {selectedImage.title}
                 </h3>
-                <p className="text-stone-300 uppercase tracking-wider">
+                <p className="text-stone-300 text-xs sm:text-sm uppercase tracking-wider mt-1">
                   {selectedImage.category}
                 </p>
               </div>
