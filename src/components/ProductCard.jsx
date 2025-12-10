@@ -17,7 +17,10 @@ const ProductCard = ({ item, type = 'bicycle' }) => {
         <div className="p-6">
           <div className="mb-2 flex items-center gap-2 flex-wrap">
             <span className="text-xs uppercase tracking-wider text-amber-700 font-semibold">
-              {item.category}
+              {type === 'accessory' 
+                ? item.category.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+                : item.category
+              }
             </span>
             {item.brand && (
               <>

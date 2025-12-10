@@ -64,6 +64,21 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Categories Section */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <SectionTitle
+            title="Explore Our Collection"
+            subtitle="Discover the perfect bicycle for your journey"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((category) => (
+              <CategoryCard key={category.id} category={category} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Meet the Owner Section */}
       <section className="py-20 bg-gradient-to-br from-amber-50 to-orange-50">
         <div className="container mx-auto px-4">
@@ -363,21 +378,6 @@ const Home = () => {
                 timeless design reduce waste.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <SectionTitle
-            title="Explore Our Collection"
-            subtitle="Discover the perfect bicycle for your journey"
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
           </div>
         </div>
       </section>
